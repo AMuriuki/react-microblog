@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import Post from './Post'
+
+const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
 export default function Posts() {
     const [posts, setPosts] = useState();
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch(`${BASE_API_URL}/api/posts`);
+            if (response.ok) {
+                const results = await response.json();
+                setPosts(results.data);
+            } else {
+                setPosts(null);
+            }
+        })();
+    }, [])
 
     return (
         <>
@@ -10,18 +25,13 @@ export default function Posts() {
                 posts === undefined ?
                     <Spinner animation="border" />
                     :
-                    posts.length === 0 ?
-                        <p>There are no blog posts</p>
-                        :
-                        posts.map(post => {
-                            return (
-                                <p key={post.id}>
-                                    <b>{post.author.username}</b> &mdash; {post.timestamp}
-                                    <br />
-                                    {post.text}
-                                </p>
-                            )
-                        })
+                    <>
+                        {posts.length === 0 ?
+                            <p>There are no blog posts</p>
+                            :
+                            posts.map(post => <Post key={post.id} post={post} />)
+                        }
+                    </>
             }
         </>
     )
