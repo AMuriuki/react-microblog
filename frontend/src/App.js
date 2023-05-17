@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import FeedPage from './pages/FeedPage';
 import ExplorePage from './pages/ExplorePage';
 import UserPage from './pages/UserPage';
+import RegistrationPage from './pages/RegistrationPage';
 
 export default function App() {
 
@@ -18,8 +19,9 @@ export default function App() {
           <Routes>
             <Route path='/' element={<FeedPage />} />
             <Route path='/explore' element={<ExplorePage />} />
-            <Route path='/login' element={<LoginPage />} />
             <Route path='/user/:username' element={<UserPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegistrationPage />} />
             <Route path='*' element={<Navigate to='/' />} />
           </Routes>
         </ApiProvider>
