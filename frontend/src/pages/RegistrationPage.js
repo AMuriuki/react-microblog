@@ -25,7 +25,7 @@ export default function RegistrationPage() {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        if (passwordField.current.value != password2Field.current.value) {
+        if (passwordField.current.value !== password2Field.current.value) {
             setFormErrors({ password2: "Password don't match" });
         } else {
             const data = await api.post("/users", {

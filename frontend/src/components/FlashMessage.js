@@ -11,6 +11,7 @@ export default function FlashMessage() {
             <div>
                 <Alert variant={flashMessage.type || "info"} dismissible
                     onClose={hideFlash}>
+                    {flashMessage.message}
                 </Alert>
             </div>
         </Collapse>

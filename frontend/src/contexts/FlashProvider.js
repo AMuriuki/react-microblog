@@ -4,7 +4,7 @@ export const FlashContext = createContext();
 let flashTimer;
 
 export default function FlashProvider({ children }) {
-    const [flashMessage, setFlashMessage] = useState();
+    const [flashMessage, setFlashMessage] = useState({});
     const [visible, setVisible] = useState(false);
 
     const flash = (message, type, duration = 10) => {
